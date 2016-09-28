@@ -9,7 +9,14 @@ const actionTweetRecieved = (newTweet) => {
 const fetchTweets = () => {
   return dispatch => {
     return ajax.get(config.default.twitterUrl)
-      .then(response => dispatch(actionTweetRecieved(response.data.statuses[0])))
+      .then(response => {
+        for (var i = 0; i < response.data.statuses.length; i++) {
+          if(!response.data.statuses[i].retweeted_status) {
+            dispatch(actionTweetRecieved(response.data.statuses[i]))
+            break
+          }
+        }
+      })
   }
 }
 

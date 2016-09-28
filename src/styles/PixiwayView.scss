@@ -1,2 +1,36 @@
+@import "variables";
+
 .pixiwayview{
+  .image-0 {
+    position: relative;
+    display: inline-block;
+    float: left;
+    margin-left: $spacing;
+    margin-top: 40vh;
+    .wrap-img-squares {
+      position: relative;
+      display: inline-block;
+      width: 20vw;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+  .image-1 {
+    position: relative;
+    display: inline-block;
+    float: right;
+    margin-right: $spacing;
+    margin-top: $spacing;
+    .wrap-img-squares {
+      position: relative;
+      display: inline-block;
+      width: 35vw;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
 }

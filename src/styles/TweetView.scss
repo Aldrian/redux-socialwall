@@ -1,2 +1,47 @@
+@import "variables";
+
 .tweetview {
+  .tweet-wrapper {
+    position: relative;
+    display: inline-block;
+    float: left;
+    margin-top: 30vh;
+    margin-left: $spacing*2.5;
+    max-width: 40vw;
+    .user-image {
+      position: absolute;
+      top: 0;
+      left: -$spacing*1.5;
+      border-radius: 5px;
+      border: 3px solid white;
+    }
+    .user-name {
+      color: $green;
+      margin-bottom: -10px;
+      margin-top: 0;
+    }
+    .user-account {
+      color: $green;
+      font-size: 22px;
+      margin-bottom: 5px;
+    }
+    .tweet {
+      font-size: 40px;
+      line-height: 150%;
+    }
+  }
+  .wrap-img-squares {
+    position: relative;
+    display: inline-block;
+    float: right;
+    margin-right: $spacing*2.5;
+    width: 35vw;
+    max-height: 30vh;
+    height: auto;
+    margin-top: 20vh;
+    img {
+      width: 35vw;
+      height: auto;
+    }
+  }
 }

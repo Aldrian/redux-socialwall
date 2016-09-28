@@ -15,11 +15,18 @@ import PixiwayView from '../components/Pixiway'
 import TimelineView from '../components/Timeline'
 import TweetView from '../components/Tweet'
 
+//Paramètres
+//Twitteroff
+//Alternativetimeline
+//nocache
+//pixiwayurl
+//twitterhashtag
+
 /* Populated by react-webpack-redux:reducer */
 class App extends Component {
   constructor(props) {
     super(props)
-    setInterval(this.props.actions.getNextSlide, 1000)
+    setInterval(this.props.actions.getNextSlide, 4000)
   }
   render() {
     const { tweets, timeline, pixiway, orchestrator} = this.props

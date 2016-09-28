@@ -1,8 +1,3 @@
-/* Define your initial state here.
- *
- * If you change the type from object to something else, do not forget to update
- * src/container/App.js accordingly.
- */
 const timeline = require('json!../jsondata/timeline.json')
 const initialState = timeline
 

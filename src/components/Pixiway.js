@@ -3,6 +3,7 @@ require('styles/App.scss')
 require('styles/PixiwayView.scss')
 
 import React from 'react'
+import Image from './Image'
 
 let logoAnniversaire = require('../images/logoanniversaire.png')
 let ctaPixiwayImage = require('../images/ctaPixiway.png')
@@ -12,12 +13,19 @@ class PixiwayView extends React.Component {
     super(props)
   }
   componentWillMount() {
-    this.props.nextElem(1)
+    this.props.nextElem(2)
   }
   render() {
     return (
-      <div className="piwiwayview">
-          {this.props.pixiway[0] && this.props.pixiway[0].entities.media[0].media_url ? <img src={this.props.pixiway[0].entities.media[0].media_url}/> : null}
+      <div className="pixiwayview">
+        <img className="imageLogo" src={logoAnniversaire}/>
+        <div className="image-0">
+          {this.props.pixiway[0] && this.props.pixiway[0].entities.media[0].media_url ? <Image src={this.props.pixiway[0].entities.media[0].media_url} small={false} lbotcorner={true} rtopcorner={true} ltopcorner={false}  top={false} rbotcorner={false} /> : null}
+        </div>
+        <div className="image-1">
+          {this.props.pixiway[1] && this.props.pixiway[1].entities.media[0].media_url ? <Image src={this.props.pixiway[1].entities.media[0].media_url} small={true} lbotcorner={true} rtopcorner={false} ltopcorner={false}  top={false} rbotcorner={false} /> : null}
+        </div>
+        <img className="imageCta" src={ctaPixiwayImage}/>
       </div>
     )
   }

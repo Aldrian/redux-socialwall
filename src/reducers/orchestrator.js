@@ -1,8 +1,3 @@
-/* Define your initial state here.
- *
- * If you change the type from object to something else, do not forget to update
- * src/container/App.js accordingly.
- */
 const initialState = {
   order: [
     'Pixiway',
@@ -22,7 +17,7 @@ const initialState = {
     'Tweets',
     'Timeline'
   ],
-  index: 0
+  index: 2
 };
 
 module.exports = function(state = initialState, action) {
@@ -37,7 +32,7 @@ module.exports = function(state = initialState, action) {
         } else newIndex++
           return Object.assign({}, {
             order: state.order,
-            index: newIndex
+            index: 2
           })
       }
     default:

@@ -1,0 +1,54 @@
+@import "variables";
+
+.wrap-img-squares {
+  position: relative;
+  display: inline-block;
+}
+
+.square {
+  position: absolute;
+  z-index: -1;
+
+  &:nth-of-type(1) {
+      top: -25px;
+      left: -25px;
+  }
+
+  &:nth-of-type(2) {
+      top: -25px;
+      right: -25px;
+  }
+
+  &:nth-of-type(3) {
+      bottom: -25px;
+      left: 20%;
+  }
+
+  &.small {
+    height: 200px;
+    width: 200px;
+  }
+
+  &.medium {
+    height: 325px;
+    width: 325px;
+  }
+
+  &.large {
+    height: 100px;
+    width: 545px;
+  }
+
+  &.red {
+    background-color: $red;
+  }
+
+  &.blue {
+    background-color: $blue;
+  }
+
+  &.green {
+    background-color: $green;
+  }
+
+}
