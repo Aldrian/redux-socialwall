@@ -14,6 +14,7 @@ import PixiPolaView from '../components/PixiPola'
 import PixiwayView from '../components/Pixiway'
 import TimelineView from '../components/Timeline'
 import TweetView from '../components/Tweet'
+import { clear } from 'redux-localstorage-simple'
 
 //Paramètres
 //Twitteroff
@@ -26,6 +27,9 @@ import TweetView from '../components/Tweet'
 class App extends Component {
   constructor(props) {
     super(props)
+    if (this.props.location.query.noCache) {
+      clear()
+    }
     setInterval(this.props.actions.getNextSlide, 4000)
   }
   render() {

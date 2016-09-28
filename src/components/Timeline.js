@@ -18,20 +18,14 @@ class TimelineView extends React.Component {
   render() {
     const timelineElem = this.props.timeline.data[this.props.timeline.index]
 
-    console.log(`../assets/images/${timelineElem.filename}`);
-    const image = require(`../assets/images/${timelineElem.filename}`)
     return (
       <div className="timelineview">
         <img className="imageLogo" src={logoAnniversaire}/>
-        <div className="timeline-image">
-          {image ? <Image src={image} small={false} lbotcorner={true} rtopcorner={false} ltopcorner={false}  top={true} rbotcorner={true}/> : null}
-        </div>
         <div className="timeline-text">
-          <span>{timelineElem.date}</span>
-          <p>{timelineElem.title}</p>
+          <p>Novius life</p>
         </div>
-        <div className="timeline-dates">
-          <span>{timelineElem.date}</span>
+        <div className="timeline-image">
+          {timelineElem.filename ? <Image src={`/assets/images/timelineOn/${timelineElem.filename}`} small={false} lbotcorner={true} rtopcorner={false} ltopcorner={false}  top={true} rbotcorner={true}/> : null}
         </div>
         <img className="imageCta" src={ctaPixiwayImage}/>
       </div>
