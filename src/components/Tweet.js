@@ -5,8 +5,8 @@ require('styles/TweetView.scss')
 import React from 'react'
 import Image from './Image'
 
-let logoAnniversaire = require('../images/logoanniversaire.png')
-let ctaPixiwayImage = require('../images/ctaPixiway.png')
+let logoAnniversaire = require('../assets/images/logoanniversaire.png')
+let ctaPixiwayImage = require('../assets/images/ctapixiway.png')
 
 class TweetView extends React.Component {
   constructor(props) {

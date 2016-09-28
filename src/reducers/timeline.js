@@ -1,4 +1,4 @@
-const timeline = require('json!../jsondata/timeline.json')
+const timeline = require('json!../assets/jsondata/timeline.json')
 const initialState = timeline
 
 module.exports = function(state = initialState, action) {
