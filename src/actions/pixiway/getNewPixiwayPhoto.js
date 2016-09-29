@@ -1,15 +1,13 @@
 import {GET_NEW_PIXIWAY_PHOTO} from './../const'
 
 import ajax from 'axios'
-const config = require('config')
-
 
 const actionPixiwayRecieved = (newPhotos) => {
   return { type: GET_NEW_PIXIWAY_PHOTO, newPhotos }
 }
-const fetchPhotos = (amount) => {
+const fetchPhotos = (amount, url) => {
   return dispatch => {
-    return ajax.get(config.default.pixiwayUrl)
+    return ajax.get(url)
       .then(response => {
         let photoArray = []
         for (var i = 0; i < amount; i++) {
@@ -20,6 +18,6 @@ const fetchPhotos = (amount) => {
   }
 }
 
-module.exports = function (amount) {
-  return fetchPhotos(amount)
+module.exports = function (amount, url) {
+  return fetchPhotos(amount, url)
 }

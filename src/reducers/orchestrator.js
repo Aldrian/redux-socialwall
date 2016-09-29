@@ -17,7 +17,7 @@ const initialState = {
     'Tweets',
     'Timeline'
   ],
-  index: 2
+  index: 0
 };
 
 module.exports = function(state = initialState, action) {
@@ -32,7 +32,7 @@ module.exports = function(state = initialState, action) {
         } else newIndex++
           return Object.assign({}, {
             order: state.order,
-            index: 2
+            index: newIndex
           })
       }
     default:

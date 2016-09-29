@@ -1,4 +1,5 @@
 const timeline = require('json!../assets/jsondata/timeline.json')
+const alternativeTimeline = require('json!../assets/jsondata/timeline.json')
 const initialState = timeline
 
 module.exports = function(state = initialState, action) {
@@ -14,6 +15,15 @@ module.exports = function(state = initialState, action) {
             index: newIndex
           })
       }
+      case 'SWITCH_TIMELINE_MODE':
+        {
+          if (action.mode === 'off') {
+            return alternativeTimeline
+          }
+          if (action.mode === 'on') {
+            return timeline
+          }
+        }
     default: {
       return state;
     }

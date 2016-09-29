@@ -7,6 +7,7 @@ import Image from './Image'
 
 let logoAnniversaire = require('../assets/images/logoanniversaire.png')
 let ctaPixiwayImage = require('../assets/images/ctapixiway.png')
+let twitterDefault = require('../assets/images/twitterdefault.jpg')
 
 class TweetView extends React.Component {
   constructor(props) {
@@ -16,11 +17,11 @@ class TweetView extends React.Component {
     this.hasRetweetedMedia = false
   }
   componentWillMount() {
-    this.props.nextElem()
+    this.props.nextElem(this.props.tweets.twitterUrl)
   }
   componentWillReceiveProps(newProps) {
-    if (newProps.tweets[0]) {
-        this.tweet = newProps.tweets[0];
+    if (newProps.tweets.data[0]) {
+        this.tweet = newProps.tweets.data[0];
         if (this.tweet.entities.media) {
           this.hasMedia = true
         }
@@ -36,7 +37,9 @@ class TweetView extends React.Component {
           {this.tweet ? <p className="user-account">{`@${this.tweet.user.screen_name}`}</p> : null}
           {this.tweet ? <p className="tweet">{this.tweet.full_text}</p> : null}
         </div>
-        {this.hasMedia ? <Image src={this.tweet.entities.media[0].media_url} small={false} lbotcorner={true} rtopcorner={false} ltopcorner={false}  top={true} rbotcorner={true}/> : null}
+        {this.hasMedia ?
+          <Image src={this.tweet.entities.media[0].media_url} small={false} lbotcorner={true} rtopcorner={false} ltopcorner={false}  top={true} rbotcorner={true}/>
+          : <Image src={twitterDefault} small={false} lbotcorner={true} rtopcorner={false} ltopcorner={false}  top={true} rbotcorner={true}/>}
         <img className="imageCta" src={ctaPixiwayImage}/>
       </div>
     )

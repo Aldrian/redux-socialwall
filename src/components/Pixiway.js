@@ -13,17 +13,17 @@ class PixiwayView extends React.Component {
     super(props)
   }
   componentWillMount() {
-    this.props.nextElem(2)
+    this.props.nextElem(2, this.props.pixiway.pixiwayUrl)
   }
   render() {
     return (
       <div className="pixiwayview">
         <img className="imageLogo" src={logoAnniversaire}/>
         <div className="image-0">
-          {this.props.pixiway[0] && this.props.pixiway[0].entities.media[0].media_url ? <Image src={this.props.pixiway[0].entities.media[0].media_url} small={false} lbotcorner={true} rtopcorner={true} ltopcorner={false}  top={false} rbotcorner={false} /> : null}
+          {this.props.pixiway.data.length > 0 && this.props.pixiway.data[0] && this.props.pixiway.data[0].entities.media[0].media_url ? <Image src={this.props.pixiway.data[0].entities.media[0].media_url} small={false} lbotcorner={true} rtopcorner={true} ltopcorner={false}  top={false} rbotcorner={false} /> : null}
         </div>
         <div className="image-1">
-          {this.props.pixiway[1] && this.props.pixiway[1].entities.media[0].media_url ? <Image src={this.props.pixiway[1].entities.media[0].media_url} small={true} lbotcorner={true} rtopcorner={false} ltopcorner={false}  top={false} rbotcorner={false} /> : null}
+          {this.props.pixiway.data.length > 0 && this.props.pixiway.data[1] && this.props.pixiway.data[1].entities.media[0].media_url ? <Image src={this.props.pixiway.data[1].entities.media[0].media_url} small={true} lbotcorner={true} rtopcorner={false} ltopcorner={false}  top={false} rbotcorner={false} /> : null}
         </div>
         <img className="imageCta" src={ctaPixiwayImage}/>
       </div>

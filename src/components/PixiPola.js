@@ -13,16 +13,16 @@ class PixiPolaView extends React.Component {
     super(props)
   }
   componentWillMount() {
-    this.props.nextElem(4)
+    this.props.nextElem(4, this.props.pixiway.pixiwayUrl)
   }
   render() {
     return (
       <div className="pixipolaview">
         <img className="imageLogo" src={logoAnniversaire}/>
-        {this.props.pixiway[0] && this.props.pixiway[0].entities.media[0].media_url ? <Image src={this.props.pixiway[0].entities.media[0].media_url}/> : null}
-        {this.props.pixiway[1] && this.props.pixiway[1].entities.media[0].media_url ? <Image src={this.props.pixiway[1].entities.media[0].media_url}/> : null}
-        {this.props.pixiway[2] && this.props.pixiway[2].entities.media[0].media_url ? <Image src={this.props.pixiway[2].entities.media[0].media_url}/> : null}
-        {this.props.pixiway[3] && this.props.pixiway[3].entities.media[0].media_url ? <Image src={this.props.pixiway[3].entities.media[0].media_url}/> : null}
+        {this.props.pixiway.data[0] && this.props.pixiway.data[0].entities.media[0].media_url ? <Image src={this.props.pixiway.data[0].entities.media[0].media_url}/> : null}
+        {this.props.pixiway.data[1] && this.props.pixiway.data[1].entities.media[0].media_url ? <Image src={this.props.pixiway.data[1].entities.media[0].media_url}/> : null}
+        {this.props.pixiway.data[2] && this.props.pixiway.data[2].entities.media[0].media_url ? <Image src={this.props.pixiway.data[2].entities.media[0].media_url}/> : null}
+        {this.props.pixiway.data[3] && this.props.pixiway.data[3].entities.media[0].media_url ? <Image src={this.props.pixiway.data[3].entities.media[0].media_url}/> : null}
         <img className="imageCta" src={ctaPixiwayImage}/>
       </div>
     )

@@ -4,7 +4,7 @@ import {Provider} from 'react-redux'
 import configureStore from './stores'
 import App from './containers/App'
 
-import {Router, Route, IndexRoute, Link, hashHistory} from 'react-router'
+import {Router, Route, hashHistory} from 'react-router'
 
 const store = configureStore()
 

@@ -1,9 +1,3 @@
-/* CAUTION: When using the generators, this file is modified in some places.
- *          This is done via AST traversal - Some of your formatting may be lost
- *          in the process - no functionality should be broken though.
- *          This modifications only run once when the generator is invoked - if
- *          you edit them, they are not updated again.
- */
 import React, {
   Component,
   PropTypes
@@ -14,23 +8,22 @@ import PixiPolaView from '../components/PixiPola'
 import PixiwayView from '../components/Pixiway'
 import TimelineView from '../components/Timeline'
 import TweetView from '../components/Tweet'
-import { clear } from 'redux-localstorage-simple'
 
-//Paramètres
-//Twitteroff
-//Alternativetimeline
-//nocache
-//pixiwayurl
-//twitterhashtag
-
-/* Populated by react-webpack-redux:reducer */
 class App extends Component {
   constructor(props) {
     super(props)
     if (this.props.location.query.noCache) {
-      clear()
+      window.localStorage.removeItem('redux_localstorage_simple');
     }
-    setInterval(this.props.actions.getNextSlide, 4000)
+    if (this.props.location.query.timeline) {
+      this.props.actions.switchTimelineMode(this.props.location.query.timeline)
+    }
+    if (this.props.location.query.noTwitter) {
+      this.props.actions.switchTimelineMode(this.props.location.query.timeline)
+    }
+    this.props.actions.setPixiwayUrl(this.props.location.query.pixiwayUrl || 'http://www.pixiway.com/albums/partners/lcdwbanquet3.json')
+    this.props.actions.setTwitterUrl(this.props.location.query.twitterUrl || 'http://tweetwall.novius.com/tweetwall/fullproxy.htm?code=blend')
+    setInterval(this.props.actions.getNextSlide, 6000)
   }
   render() {
     const { tweets, timeline, pixiway, orchestrator} = this.props
@@ -48,20 +41,15 @@ class App extends Component {
     )
   }
 }
-/* Populated by react-webpack-redux:reducer
- *
- * HINT: if you adjust the initial type of your reducer, you will also have to
- *       adjust it here.
- */
+
 App.propTypes = {
   actions: PropTypes.object.isRequired,
-  tweets: PropTypes.array.isRequired,
+  tweets: PropTypes.object.isRequired,
   timeline: PropTypes.object.isRequired,
-  pixiway: PropTypes.array.isRequired,
+  pixiway: PropTypes.object.isRequired,
   orchestrator: PropTypes.object.isRequired
 }
 function mapStateToProps(state) {
-  /* Populated by react-webpack-redux:reducer */
   const props = {
     tweets: state.tweets,
     timeline: state.timeline,
@@ -71,12 +59,14 @@ function mapStateToProps(state) {
   return props
 }
 function mapDispatchToProps(dispatch) {
-  /* Populated by react-webpack-redux:action */
   const actions = {
     getNewTweet: require('../actions/tweets/getNewTweet.js'),
     getNewPixiwayPhoto: require('../actions/pixiway/getNewPixiwayPhoto.js'),
     getNewTimelineElem: require('../actions/timeline/getNewTimelineElem.js'),
-    getNextSlide: require('../actions/orchestrator/getNextSlide.js')
+    getNextSlide: require('../actions/orchestrator/getNextSlide.js'),
+    switchTimelineMode: require('../actions/timeline/switchTimelineMode.js'),
+    setPixiwayUrl: require('../actions/pixiway/setPixiwayUrl.js'),
+    setTwitterUrl: require('../actions/tweets/setTwitterUrl.js')
   }
   const actionMap = { actions: bindActionCreators(actions, dispatch) }
   return actionMap
