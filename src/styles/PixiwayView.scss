@@ -5,32 +5,27 @@
     position: relative;
     display: inline-block;
     float: left;
-    margin-left: $spacing;
+    margin-left: $spacing*3;
     margin-top: 40vh;
     .wrap-img-squares {
       position: relative;
       display: inline-block;
-      width: 20vw;
-      img {
-        width: 100%;
-        height: auto;
-      }
+      width: 30vw;
+      height: auto;
+      animation-delay:0.4s;
     }
   }
   .image-1 {
     position: relative;
     display: inline-block;
     float: right;
-    margin-right: $spacing;
+    margin-right: $spacing*3;
     margin-top: $spacing;
     .wrap-img-squares {
       position: relative;
       display: inline-block;
-      width: 35vw;
-      img {
-        width: 100%;
-        height: auto;
-      }
+      width: 45vw;
+      height: auto;
     }
   }
 }

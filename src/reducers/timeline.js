@@ -1,5 +1,5 @@
-const timeline = require('json!../assets/jsondata/timeline.json')
-const alternativeTimeline = require('json!../assets/jsondata/timeline.json')
+const timeline = require('json!../assets/jsondata/timeline-on.json')
+const alternativeTimeline = require('json!../assets/jsondata/timeline-off.json')
 const initialState = timeline
 
 module.exports = function(state = initialState, action) {
@@ -12,7 +12,8 @@ module.exports = function(state = initialState, action) {
         } else newIndex++
           return Object.assign({}, {
             data: state.data,
-            index: newIndex
+            index: newIndex,
+            mode: state.mode
           })
       }
       case 'SWITCH_TIMELINE_MODE':

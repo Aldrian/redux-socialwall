@@ -1,6 +1,7 @@
 require('normalize.css/normalize.css')
 require('styles/App.scss')
 require('styles/TweetView.scss')
+require('styles/animate.scss')
 
 import React from 'react'
 import Image from './Image'
@@ -20,27 +21,51 @@ class TweetView extends React.Component {
     this.props.nextElem(this.props.tweets.twitterUrl)
   }
   componentWillReceiveProps(newProps) {
-    if (newProps.tweets.data[0]) {
-        this.tweet = newProps.tweets.data[0];
-        if (this.tweet.entities.media) {
-          this.hasMedia = true
-        }
+    //Quick & dirty, to be refactored
+    if (newProps.tweets.newTweet && newProps.tweets.data[0]) {
+      this.tweet = newProps.tweets.data[0]
+      if (this.tweet.entities.media) {
+        this.hasMedia = true
+      }
+    }
+    else if (!newProps.tweets.newTweet && newProps.tweets.data[newProps.tweets.oldIndex]){
+      this.tweet = newProps.tweets.data[newProps.tweets.oldIndex]
+      if (this.tweet.entities.media) {
+        this.hasMedia = true
+      }
+    }
+    if (!this.tweet) {
+      this.props.getNextSlide()
     }
   }
   render() {
+    let imageProps = {
+      topcorner: {
+        size: 'large',
+        color: 'blue'
+      },
+      lbotcorner: {
+        size: 'medium',
+        color: 'green'
+      },
+      rbotcorner: {
+        size: 'small',
+        color: 'red'
+      }
+    }
     return (
-      <div className="tweetview">
+      <div className="tweetview" ref="view">
         <img className="imageLogo" src={logoAnniversaire}/>
-        <div className="tweet-wrapper">
-          {this.tweet ? <img className="user-image" src={this.tweet.user.profile_image_url}/> : null}
-          {this.tweet ? <p className="user-name">{`${this.tweet.user.name}`}</p> : null}
-          {this.tweet ? <p className="user-account">{`@${this.tweet.user.screen_name}`}</p> : null}
-          {this.tweet ? <p className="tweet">{this.tweet.full_text}</p> : null}
-        </div>
+        {this.tweet ? <div className="tweet-wrapper animated slideInLeft">
+           <img className="user-image" src={this.tweet.user.profile_image_url}/>
+           <p className="user-name">{`${this.tweet.user.name}`}</p>
+           <p className="user-account">{`@${this.tweet.user.screen_name}`}</p>
+           <p className="tweet">{this.tweet.full_text}</p>
+        </div> : null}
         {this.hasMedia ?
-          <Image src={this.tweet.entities.media[0].media_url} small={false} lbotcorner={true} rtopcorner={false} ltopcorner={false}  top={true} rbotcorner={true}/>
-          : <Image src={twitterDefault} small={false} lbotcorner={true} rtopcorner={false} ltopcorner={false}  top={true} rbotcorner={true}/>}
-        <img className="imageCta" src={ctaPixiwayImage}/>
+          <Image className="animated slideInRight" src={this.tweet.entities.media[0].media_url} topcorner={imageProps.topcorner} lbotcorner={imageProps.lbotcorner} rbotcorner={imageProps.rbotcorner}/>
+          : <Image className="animated slideInRight" src={twitterDefault} topcorner={imageProps.topcorner} lbotcorner={imageProps.lbotcorner} rbotcorner={imageProps.rbotcorner}/>}
+        <img className="imageCta animated pulse" src={ctaPixiwayImage}/>
       </div>
     )
   }

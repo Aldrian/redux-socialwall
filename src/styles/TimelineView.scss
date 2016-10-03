@@ -11,22 +11,25 @@ div.timelineview {
     display: block;
     float: right;
     width: 100vw;
-    margin-top: 20vh;
+    margin-top: 4vh;
     margin-bottom: $spacing/2;
     text-align: center;
-    font-size: 45px;
+    font-size: 50px;
     text-transform: uppercase;
     letter-spacing: 4px;
   }
 
   .timeline-image {
-    position: relative;
+    position: absolute;
+    top:25%;
+    left: 50%;
+    transform: translateX(-50%);
     display: block;
-    width: 35vw;
+    height: 62vh;
     margin: auto;
     img {
-      width: 100%;
-      height: auto;
+      width: auto;
+      height: 62vh;
     }
   }
 }

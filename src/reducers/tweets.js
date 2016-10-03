@@ -1,16 +1,32 @@
 const initialState = {
   data : [],
-  twitterUrl : ''
+  twitterUrl : '',
+  oldIndex : 0,
+  newTweet : true
 };
 
 module.exports = function(state = initialState, action) {
   switch(action.type) {
     case 'GET_NEW_TWEET':
       {
-        if(initialState[0] != action.newTweet) {
+        if(state.data.length == 0 || state.data[0].id != action.newTweet.id) {
           return Object.assign({}, {
-            twitterUrl: state.twitterUrl,
-            data: [action.newTweet].concat(state.data)
+            data: [action.newTweet].concat(state.data),
+            newTweet: true,
+            oldIndex: state.oldIndex,
+            twitterUrl: state.twitterUrl
+          })
+        }
+        else {
+          let _oldIndex = state.oldIndex
+          if (_oldIndex === state.data.length - 1) {
+            _oldIndex = 0
+          } else _oldIndex++
+          return Object.assign({}, {
+            newTweet: false,
+            oldIndex: _oldIndex,
+            data: state.data,
+            twitterUrl: state.twitterUrl
           })
         }
       }
@@ -18,7 +34,9 @@ module.exports = function(state = initialState, action) {
       {
         return Object.assign({}, {
           twitterUrl: action.url,
-          data: state.data || []
+          data: state.data || [],
+          newPhoto: true,
+          oldIndex: 0
         })
       }
     default: {

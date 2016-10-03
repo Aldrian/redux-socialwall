@@ -1,6 +1,7 @@
 require('normalize.css/normalize.css')
 require('styles/App.scss')
 require('styles/TimelineView.scss')
+require('styles/animate.scss')
 
 import React from 'react'
 import Image from './Image'
@@ -17,17 +18,31 @@ class TimelineView extends React.Component {
   }
   render() {
     const timelineElem = this.props.timeline.data[this.props.timeline.index]
-
+    const mode = this.props.timeline.mode
+    let imageProps = {
+      topcorner: {
+        size: 'large',
+        color: 'blue'
+      },
+      lbotcorner: {
+        size: 'medium',
+        color: 'green'
+      },
+      rbotcorner: {
+        size: 'small',
+        color: 'red'
+      }
+    }
     return (
       <div className="timelineview">
         <img className="imageLogo" src={logoAnniversaire}/>
-        <div className="timeline-text">
+        <div className="timeline-text animated zoomIn">
           <p>Novius life</p>
         </div>
         <div className="timeline-image">
-          {timelineElem.filename ? <Image src={`/assets/images/timelineOn/${timelineElem.filename}`} small={false} lbotcorner={true} rtopcorner={false} ltopcorner={false}  top={true} rbotcorner={true}/> : null}
+          {timelineElem.filename ? <Image className="animated zoomIn" src={`/assets/images/${mode=='on' ? 'timelineOn' : 'timelineOff'}/${timelineElem.filename}`} topcorner={imageProps.topcorner} lbotcorner={imageProps.lbotcorner} rbotcorner={imageProps.rbotcorner}/> : null}
         </div>
-        <img className="imageCta" src={ctaPixiwayImage}/>
+        <img className="imageCta animated pulse" src={ctaPixiwayImage}/>
       </div>
     )
   }

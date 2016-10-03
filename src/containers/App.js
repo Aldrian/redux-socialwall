@@ -12,17 +12,21 @@ import TweetView from '../components/Tweet'
 class App extends Component {
   constructor(props) {
     super(props)
+  }
+  componentWillMount() {
     if (this.props.location.query.noCache) {
-      window.localStorage.removeItem('redux_localstorage_simple');
+      localStorage.removeItem('redux_localstorage_simple')
     }
     if (this.props.location.query.timeline) {
       this.props.actions.switchTimelineMode(this.props.location.query.timeline)
     }
-    if (this.props.location.query.noTwitter) {
+    /*if (this.props.location.query.noTwitter) {
       this.props.actions.switchTimelineMode(this.props.location.query.timeline)
-    }
-    this.props.actions.setPixiwayUrl(this.props.location.query.pixiwayUrl || 'http://www.pixiway.com/albums/partners/lcdwbanquet3.json')
-    this.props.actions.setTwitterUrl(this.props.location.query.twitterUrl || 'http://tweetwall.novius.com/tweetwall/fullproxy.htm?code=blend')
+    }*/
+    this.props.actions.setPixiwayUrl(this.props.location.query.pixiwayUrl || 'http://www.pixiway.com/albums/partners/20ansnovius.json')
+    this.props.actions.setTwitterUrl(this.props.location.query.twitterUrl || 'http://tweetwall.novius.com/tweetwall/fullproxy.htm?code=20ansNovius')
+  }
+  componentDidMount() {
     setInterval(this.props.actions.getNextSlide, 6000)
   }
   render() {
@@ -31,10 +35,10 @@ class App extends Component {
       <div className="app">
         {(() => {
           switch (orchestrator.order[orchestrator.index]) {
-            case 'Pixiway': return <PixiwayView pixiway={pixiway} nextElem={this.props.actions.getNewPixiwayPhoto}/>
-            case 'Tweets': return <TweetView tweets={tweets} nextElem={this.props.actions.getNewTweet}/>
-            case 'Timeline': return <TimelineView timeline={timeline} nextElem={this.props.actions.getNewTimelineElem}/>
-            case 'Pixiway Pola': return <PixiPolaView pixiway={pixiway} nextElem={this.props.actions.getNewPixiwayPhoto}/>
+            case 'Pixiway': return <PixiwayView pixiway={pixiway} nextElem={this.props.actions.getNewPixiwayPhoto} getNextSlide={this.props.actions.getNextSlide}/>
+            case 'Tweets': return <TweetView tweets={tweets} nextElem={this.props.actions.getNewTweet} getNextSlide={this.props.actions.getNextSlide}/>
+            case 'Timeline': return <TimelineView timeline={timeline} nextElem={this.props.actions.getNewTimelineElem} getNextSlide={this.props.actions.getNextSlide}/>
+            case 'Pixiway Pola': return <PixiPolaView pixiway={pixiway} nextElem={this.props.actions.getNewPixiwayPhoto} getNextSlide={this.props.actions.getNextSlide}/>
           }
         })()}
       </div>
